@@ -19,13 +19,13 @@ public class FilmeController {
     private FilmeDAO filmeDAO;
     @GetMapping
     public String listar(Model model) {
-        List<Filme> lista = filmeDAO.buscarTodos();
-        Filme titanic = new Filme();
-        titanic.setTitulo("Titanic");
-        titanic.setGenero("Drama");
-        titanic.setDuracao(3.14);
-        titanic.setImagem("<img src=https://upload.wikimedia.org/wikipedia/pt/2/22/Titanic_poster.jpg>");
-        lista.add(titanic);
+        List<Filme> listaFilmes = filmeDAO.buscarTodos();
+        model.addAttribute("filmes", listaFilmes);
+        return "filme_listar";
+    }
+    @GetMapping("/favoritos")
+    public String listarFavoritos (Model model) {
+        List<Filme> lista = filmeDAO.buscarFavoritos();
         model.addAttribute("filmes", lista);
         return "filme_listar";
     }
@@ -56,5 +56,36 @@ public class FilmeController {
     public String remover(@PathVariable int id) {
         filmeDAO.remover(id);
         return "redirect:/filme";
+    }
+    @GetMapping("/like/{id}")
+    public String like(@PathVariable int id) {
+        filmeDAO.like(id);
+        return "redirect:/home";
+    }
+    @PostMapping("/like")
+    public String adicionarLike(@PathVariable int id) {
+        filmeDAO.like(id);
+        return "redirect:/home";
+    }
+    @GetMapping("/dislike/{id}")
+    public String dislike(@PathVariable int id) {
+        filmeDAO.dislike(id);
+        return "redirect:/home";
+    }
+    @PostMapping("/dislike")
+    public String adicionarDislike(@PathVariable int id) {
+        filmeDAO.dislike(id);
+        return "redirect:/home";
+    }
+    @GetMapping("/favoritar/{id}")
+    public String novoFavorito(@PathVariable int id) {
+        filmeDAO.favoritar(id);
+        return "redirect:/home";
+    }
+
+    @PostMapping("/favoritar")
+    public String favoritar(Filme filme) {
+        filmeDAO.atualizar(filme);
+        return "redirect:/home";
     }
 }

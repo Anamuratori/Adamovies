@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <meta charset="UTF-8">
     <title>Editar Filme</title>
 </head>
@@ -13,6 +15,18 @@
     <br>
     <label for="genero">Genero:</label>
     <input type="text" id="genero" name="genero" th:field="*{genero}"/>
+    <br>
+    <label for="duracao">Duração:</label>
+    <input type="text" id="duracao" name="duracao" th:field="*{duracao}"/>
+    <br>
+    <label for="sinopse">Sinopse:</label>
+    <input type="text" id="sinopse" name="sinopse" th:field="*{sinopse}"/>
+    <br>
+    <label for="imdb">IMDB:</label>
+    <input type="text" id="imdb" name="imdb" th:field="*{imdb}"/>
+    <br>
+    <label for="imagem">Imagem:</label>
+    <input type="text" id="imagem" name="imagem" th:field="*{imagem}"/>
     <br>
     <button type="submit">Salvar</button>
     <a th:href="@{/filme}">Cancelar</a>

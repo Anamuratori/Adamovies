@@ -6,11 +6,12 @@ public class Filme {
     private int id;
     private String titulo;
     private String genero;
-    private Double duracao;
+    private int duracao;
     private String sinopse;
     private Double imdb;
     private String imagem;
-    private List<Ator> atores;
+    private int like = 0;
+    private int dislike = 0;
 
     public Filme() {
     }
@@ -39,14 +40,13 @@ public class Filme {
         this.genero = genero;
     }
 
-    public Double getDuracao() {
+    public int getDuracao() {
         return duracao;
     }
 
-    public void setDuracao(Double duracao) {
+    public void setDuracao(int duracao) {
         this.duracao = duracao;
     }
-
     public String getSinopse() {
         return sinopse;
     }
@@ -71,11 +71,19 @@ public class Filme {
         this.imagem = imagem;
     }
 
-    public List<Ator> getAtores() {
-        return atores;
+    public int getLike() {
+        return like;
     }
 
-    public void setAtores(List<Ator> atores) {
-        this.atores = atores;
+    public void setLike(int like) {
+        this.like = like;
+    }
+
+    public int getDislike() {
+        return dislike;
+    }
+
+    public void setDislike(int dislike) {
+        this.dislike = dislike;
     }
 }

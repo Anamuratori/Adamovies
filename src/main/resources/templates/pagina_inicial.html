@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Adamovies</title>
+</head>
+<body>
+<td><a th:href="@{/home}"><h1 class="text-center">Adamovies</h1></a></td>
+<div class="container">
+<table class="table">
+  <h3>Filmes</h3>
+  <thead>
+  <tr>
+    <th>Titulo</th>
+    <th>Genero</th>
+    <th>Duracao</th>
+    <th>Sinopse</th>
+    <th>IMDB</th>
+    <th>Likes</th>
+    <th>Dislikes</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="filme : ${filmes}">
+    <td th:text="${filme.titulo}"></td>
+    <td th:text="${filme.genero}"></td>
+    <td th:text="${filme.duracao}"></td>
+    <td th:text="${filme.sinopse}"></td>
+    <td th:text="${filme.imdb}"></td>
+    <td><img style="max-height: 190px;" th:src="${filme.imagem}"></td>
+    <td th:text="${filme.like}"></td>
+    <td th:text="${filme.dislike}"></td>
+    <td><a th:href="@{/filme/editar/{id}(id=${filme.id})}">Editar</a></td>
+    <td><a th:href="@{/filme/remover/{id}(id=${filme.id})}" onclick="return confirm('Tem certeza que deseja excluir este filme?')">Excluir</a></td>
+    <td><a th:href="@{/filme/like/{id}(id=${filme.id})}">Like</a></td>
+    <td><a th:href="@{/filme/dislike/{id}(id=${filme.id})}">Dislike</a></td>
+    <td><a th:href="@{/filme/favoritar/{id}(id=${filme.id})}">Favoritar</a></td>
+  </tr>
+  </tbody>
+</table>
+  <div>
+    <a th:href="@{/filme/novo}"><button type="button" style="float: contour" class="btn btn-primary">Adicionar Filme</button></a>
+    <a th:href="@{/filme/favoritos}"><button type="button" style="float: right" class="btn btn-warning">Favoritos</button></a>
+  </div>
+</div>
+
+<div class="container">
+  <table class="table">
+    <h3>Noticias</h3>
+    <thead>
+    <tr>
+      <th>Titulo</th>
+      <th>Autor</th>
+      <th>Descrição</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="noticia : ${noticias}">
+      <td th:text="${noticia.titulo}"></td>
+      <td th:text="${noticia.autor}"></td>
+      <td th:text="${noticia.descricao}"></td>
+      <td><img style="max-height: 190px;" th:src="${noticia.imagem}"></td>
+      <td><a th:href="@{/noticia/editar/{id}(id=${noticia.id})}">Editar</a></td>
+      <td><a th:href="@{/noticia/remover/{id}(id=${noticia.id})}" onclick="return confirm('Tem certeza que deseja excluir esta noticia?')">Excluir</a></td>
+    </tr>
+    </tbody>
+  </table>
+  <a th:href="@{/noticia/novo}">Adicionar noticia</a>
+</div>
+
+</body>
+</html>
