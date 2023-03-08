@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet" type="text/css" th:href="@{/noticias.css}" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -9,43 +11,54 @@
 </head>
 <body>
 <td><a><h1 class="text-center" style="font-family: 'Bauhaus 93'; font-size: xxx-large;">adamovies</h1></a></td>
-<table class="table">
-    <thead>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" th:href="@{/home}">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/filme}">| Todos os Filmes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/noticia}">| Todas as Noticias</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <tr>
-        <th> </th>
-        <th> </th>
-        <th>Autor</th>
-        <th>Descrição</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="noticia : ${noticias}">
-        <td><img style="max-height: 190px; max-width: 286px" th:src="${noticia.imagem}"></td>
-        <td th:text="${noticia.titulo}" style="font-weight: bold"></td>
-        <td th:text="${noticia.autor}"></td>
-        <td th:text="${noticia.descricao}"></td>
-        <td><a th:href="@{/noticia/editar/{id}(id=${noticia.id})}"><i class="bi bi-pencil"></i></a></td> <!--Editar-->
-        <td><a th:href="@{/noticia/remover/{id}(id=${noticia.id})}" onclick="return confirm('Tem certeza que deseja excluir esta noticia?')"><i style="color: maroon" class="bi bi-trash3"></i></a></td> <!--Excluir-->
-    </tr>
-    </tbody>
-</table>
-<nav class="navbar navbar-light bg-light">
-    <a class="nav-link" style="color: gray" th:href="@{/noticia/novo}">Adicionar Noticia</a>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/home}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/filme}">| Todos os Filmes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/noticia}">| Todas as Noticias</a>
+            </li>
+        </ul>
+    </div>
 </nav>
+<br>
+
+<h3 class="text-center" style="font-family: 'Bauhaus 93'">Notícias</h3>
+<hr>
+
+<div class="cards">
+    <div class="card" th:each="noticia : ${noticias}">
+        <img class="card__image" th:src="${noticia.imagem}" alt="">
+        <div class="card__content">
+            <p th:text="${noticia.titulo}" style="font-weight: bold"></p>
+            <p style="font-style: oblique" th:text="${noticia.autor}"></p>
+            <p th:text="${noticia.descricao}"></p>
+
+        </div>
+        <div class="card__info">
+            <div>
+                <a th:href="@{/noticia/editar/{id}(id=${noticia.id})}" class="card__link"><i style="font-size: 22px" class="material-icons">edit</i></a>
+            </div>
+            <div>
+                <a th:href="@{/noticia/remover/{id}(id=${noticia.id})}" class="card__link" onclick="return confirm('Tem certeza que deseja excluir esta noticia?')"><i style="font-size: 22px; color: darkred" class="material-icons">delete</i></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+<nav class="navbar navbar-light bg-light">
+    <a class="nav-link" style="color: gray" th:href="@{/noticia/novo}">Adicionar Notícia</a>
+    <a class="nav-link" style="color: gray" th:href="@{/home}">Voltar</a>
+</nav>
+<br>
+<br>
 </body>
 </html>

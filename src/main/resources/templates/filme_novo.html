@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+  <link rel="stylesheet" type="text/css" th:href="@{/noticias.css}" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -40,8 +41,9 @@
   <input type="text" class="form-control" style="max-width: 400px" id="duracao" name="duracao" th:field="*{duracao}"/>
   </div>
   <div class="mb-3">
+
   <label for="sinopse" class="form-label">Sinopse:</label>
-  <input type="text" class="form-control" style="max-width: 400px" id="sinopse" name="sinopse" th:field="*{sinopse}"/>
+    <textarea type="text" class="form-control" style="max-width: 400px; height: 150px; word-break: break-word" id="sinopse" name="sinopse" th:field="*{sinopse}"/>
   </div>
   <div class="mb-3">
   <label for="imdb" class="form-label">IMDB:</label>

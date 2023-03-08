@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet" type="text/css" th:href="@{/filme.css}" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -9,58 +11,63 @@
 </head>
 <body>
 <td><a><h1 class="text-center" style="font-family: 'Bauhaus 93'; font-size: xxx-large;">adamovies</h1></a></td>
-<table class="table">
-    <thead>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" th:href="@{/home}">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/filme}">| Todos os Filmes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/noticia}">| Todas as Noticias</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <tr>
-        <th> </th>
-        <th> </th>
-        <th>Titulo</th>
-        <th>Gênero</th>
-        <th>Duração</th>
-        <th>Sinopse</th>
-        <th>IMDB</th>
-        <th>Likes</th>
-        <th>Dislikes</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="filme : ${filmes}">
-        <td><a th:href="@{/filme/favoritar/{id}(id=${filme.id})}"><i style="color: goldenrod" class="bi bi-bookmark-star-fill"></i></a></td>
-        <td><img style="max-height: 190px; max-width: 128px" th:src="${filme.imagem}"></td>
-        <td th:text="${filme.titulo}" style="font-weight: bold"></td>
-        <td th:text="${filme.genero}"></td>
-        <td th:text="${filme.duracao}"></td>
-        <td th:text="${filme.sinopse}"></td>
-        <td th:text="${filme.imdb}"></td>
-        <td th:text="${filme.like}"></td>
-        <td th:text="${filme.dislike}"></td>
-        <td><a th:href="@{/filme/editar/{id}(id=${filme.id})}"><i class="bi bi-pencil"></i></a></td>
-        <td><a th:href="@{/filme/remover/{id}(id=${filme.id})}" onclick="return confirm('Tem certeza que deseja excluir este filme?')"><i style="color: maroon" class="bi bi-trash3"></i></a></td>
-        <td><a th:href="@{/filme/like/{id}(id=${filme.id})}"><i class="bi bi-hand-thumbs-up"></i></a></td>
-        <td><a th:href="@{/filme/dislike/{id}(id=${filme.id})}"><i class="bi bi-hand-thumbs-down"></i></a></td>
 
-        <!--    <td><a th:href="@{/filme/desfavoritar/{id}(id=${filme.id})}">Desfavoritar</a></td>-->
-    </tr>
-    </tbody>
-</table>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/home}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/filme}">| Todos os Filmes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/noticia}">| Todas as Noticias</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<br>
+
+<h3 class="text-center" style="font-family: 'Bauhaus 93'">Filmes</h3>
+<hr>
+
+<div class="cards">
+    <div class="card" th:each="filme : ${filmes}">
+        <img class="card__image" th:src="${filme.imagem}" alt="">
+        <div class="card__content">
+            <p th:text="${filme.titulo}" style="font-weight: bold"></p>
+            <p style="font-style: oblique" th:text="${filme.duracao}" >text</p>
+            <p style="font-style: oblique" th:text="${filme.imdb}"></p>
+            <p th:text="${filme.sinopse}"></p>
+
+        </div>
+        <div class="card__info">
+            <div>
+                <a th:href="@{/filme/like/{id}(id=${filme.id})}" class="card__link"><i style="font-size: 16px" class="material-icons">thumb_up</i><p th:text="${filme.like}"></p></a>
+            </div>
+            <div>
+                <a th:href="@{/filme/dislike/{id}(id=${filme.id})}" class="card__link"><i style="font-size: 16px" class="material-icons">thumb_down</i><p th:text="${filme.dislike}"></p></a>
+            </div>
+            <div>
+                <a th:href="@{/filme/editar/{id}(id=${filme.id})}" class="card__link"><i style="font-size: 22px" class="material-icons">edit</i></a>
+            </div>
+            <div>
+                <a th:href="@{/filme/remover/{id}(id=${filme.id})}" class="card__link" onclick="return confirm('Tem certeza que deseja excluir esta noticia?')"><i style="font-size: 22px; color: darkred" class="material-icons">delete</i></i></a>
+            </div>
+            <div>
+            <a th:href="@{/filme/favoritar/{id}(id=${filme.id})}"><i style="font-size: 22px; color: goldenrod" class="material-icons">stars</i></a>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<br>
 <nav class="navbar navbar-light bg-light">
     <a class="nav-link" style="color: gray" th:href="@{/filme/novo}">Adicionar Filme</a>
     <a class="nav-link" style="color: gray"  th:href="@{/filme/favoritos}">Favoritos</a>
 </nav>
+<br>
+<br>
 </body>
 </html>

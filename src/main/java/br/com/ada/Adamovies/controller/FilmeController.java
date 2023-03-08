@@ -60,22 +60,22 @@ public class FilmeController {
     @GetMapping("/like/{id}")
     public String like(@PathVariable int id) {
         filmeDAO.like(id);
-        return "redirect:/home";
+        return "redirect:/filme";
     }
     @PostMapping("/like")
     public String adicionarLike(@PathVariable int id) {
         filmeDAO.like(id);
-        return "redirect:/home";
+        return "redirect:/filme";
     }
     @GetMapping("/dislike/{id}")
     public String dislike(@PathVariable int id) {
         filmeDAO.dislike(id);
-        return "redirect:/home";
+        return "redirect:/filme";
     }
     @PostMapping("/dislike")
     public String adicionarDislike(@PathVariable int id) {
         filmeDAO.dislike(id);
-        return "redirect:/home";
+        return "redirect:/filme";
     }
     @GetMapping("/favoritar/{id}")
     public String novoFavorito(@PathVariable int id) {
@@ -103,6 +103,6 @@ public class FilmeController {
     public String listar(@PathVariable int id, Model model) {
         Filme filme = filmeDAO.buscarPorId(id);
         model.addAttribute("filme", filme);
-        return "filme_listar";
+        return "filme_buscar";
     }
 }

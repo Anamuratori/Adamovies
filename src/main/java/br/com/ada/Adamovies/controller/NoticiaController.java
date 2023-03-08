@@ -52,4 +52,10 @@ public class NoticiaController {
         noticiaDAO.remover(id);
         return "redirect:/noticia";
     }
+    @GetMapping("/buscar/{id}")
+    public String listar(@PathVariable int id, Model model) {
+        Noticia noticia = noticiaDAO.buscarPorId(id);
+        model.addAttribute("noticia", noticia);
+        return "noticia_buscar";
+    }
 }
