@@ -8,28 +8,51 @@
   <title>Adicionar Filme</title>
 </head>
 <body>
-<h3>Adicionar Filme</h3>
+<td><a ><h1 class="text-center" style="font-family: 'Bauhaus 93'; font-size: xxx-large;">adamovies</h1></a></td>
+<hr>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" th:href="@{/home}">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/filme}">| Todos os Filmes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/noticia}">| Todas as Noticias</a>
+      </li>
+    </ul>
+  </div>
+</nav>
 <form th:object="${filme}" method="post" th:action="@{/filme/novo}">
-  <label for="titulo">Titulo:</label>
-  <input type="text" id="titulo" name="titulo" th:field="*{titulo}"/>
   <br>
-  <label for="genero">Genero:</label>
-  <input type="text" id="genero" name="genero" th:field="*{genero}"/>
-  <br>
-  <label for="duracao">Duração:</label>
-  <input type="text" id="duracao" name="duracao" th:field="*{duracao}"/>
-  <br>
-  <label for="sinopse">Sinopse:</label>
-  <input type="text" id="sinopse" name="sinopse" th:field="*{sinopse}"/>
-  <br>
-  <label for="imdb">IMDB:</label>
-  <input type="text" id="imdb" name="imdb" th:field="*{imdb}"/>
-  <br>
-  <label for="imagem">Imagem:</label>
-  <input type="text" id="imagem" name="imagem" th:field="*{imagem}"/>
-  <br>
-  <button type="submit">Salvar</button>
-  <a th:href="@{/home}">Cancelar</a>
+  <div class="mb-3">
+  <label for="titulo" class="form-label">Titulo:</label>
+  <input type="text" class="form-control" style="max-width: 400px" id="titulo" name="titulo" th:field="*{titulo}"/>
+  </div>
+  <div class="mb-3">
+  <label for="genero" class="form-label">Genero:</label>
+  <input type="text" class="form-control" style="max-width: 400px" id="genero" name="genero" th:field="*{genero}"/>
+  </div>
+  <div class="mb-3">
+  <label for="duracao" class="form-label">Duração:</label>
+  <input type="text" class="form-control" style="max-width: 400px" id="duracao" name="duracao" th:field="*{duracao}"/>
+  </div>
+  <div class="mb-3">
+  <label for="sinopse" class="form-label">Sinopse:</label>
+  <input type="text" class="form-control" style="max-width: 400px" id="sinopse" name="sinopse" th:field="*{sinopse}"/>
+  </div>
+  <div class="mb-3">
+  <label for="imdb" class="form-label">IMDB:</label>
+  <input type="text" class="form-control" style="max-width: 400px" id="imdb" name="imdb" th:field="*{imdb}"/>
+  </div>
+  <div class="mb-3">
+  <label for="imagem" class="form-label">Imagem:</label>
+  <input type="text" class="form-control" style="max-width: 400px" id="imagem" name="imagem" th:field="*{imagem}"/>
+  </div>
+  <button type="submit" class="btn btn-info">Salvar</button>
+  <button th:href="@{/home}" class="btn btn-danger">Cancelar</button>
 </form>
 </body>
 </html>

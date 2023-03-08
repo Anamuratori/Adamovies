@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <meta charset="UTF-8">
-    <title>Editar Filme</title>
+    <title>Editar Noticia</title>
 </head>
 <body>
 <td><a ><h1 class="text-center" style="font-family: 'Bauhaus 93'; font-size: xxx-large;">adamovies</h1></a></td>
@@ -25,27 +25,19 @@
         </ul>
     </div>
 </nav>
-<form th:object="${filme}" th:action="@{/filme/editar}" method="post">
+<form th:object="${noticia}" th:action="@{/noticia/editar}" method="post">
     <input type="hidden" th:field="*{id}">
     <div class="mb-3">
     <label for="titulo" class="form-label">Titulo:</label>
     <input type="text" class="form-control" style="max-width: 400px" id="titulo" name="titulo" th:field="*{titulo}"/>
     </div>
     <div class="mb-3">
-    <label for="genero" class="form-label">Genero:</label>
-    <input type="text" class="form-control" style="max-width: 400px" id="genero" name="genero" th:field="*{genero}"/>
+    <label for="autor" class="form-label">Autor:</label>
+    <input type="text" class="form-control" style="max-width: 400px" id="autor" name="autor" th:field="*{autor}"/>
     </div>
     <div class="mb-3">
-    <label for="duracao" class="form-label">Duração:</label>
-    <input type="text" class="form-control" style="max-width: 400px" id="duracao" name="duracao" th:field="*{duracao}"/>
-    </div>
-    <div class="mb-3">
-    <label for="sinopse" class="form-label">Sinopse:</label>
-    <input type="text" class="form-control" style="max-width: 400px" id="sinopse" name="sinopse" th:field="*{sinopse}"/>
-    </div>
-    <div class="mb-3">
-    <label for="imdb" class="form-label">IMDB:</label>
-    <input type="text" class="form-control" style="max-width: 400px" id="imdb" name="imdb" th:field="*{imdb}"/>
+    <label for="descricao" class="form-label">Descrição:</label>
+    <input type="text" class="form-control" style="max-width: 400px" id="descricao" name="descricao" th:field="*{descricao}"/>
     </div>
     <div class="mb-3">
     <label for="imagem" class="form-label">Imagem:</label>

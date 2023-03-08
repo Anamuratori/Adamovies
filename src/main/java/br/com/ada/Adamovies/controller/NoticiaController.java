@@ -32,7 +32,7 @@ public class NoticiaController {
     @PostMapping("/novo")
     public String adicionar (Noticia noticia) {
         noticiaDAO.adicionar(noticia);
-        return "redirect:/home";
+        return "redirect:/noticia";
     }
     @GetMapping("/editar/{id}")
     public String editar(@PathVariable int id, Model model) {
@@ -44,12 +44,12 @@ public class NoticiaController {
     @PostMapping("/editar")
     public String atualizar(Noticia noticia) {
         noticiaDAO.atualizar(noticia);
-        return "redirect:/home";
+        return "redirect:/noticia";
     }
 
     @GetMapping("/remover/{id}")
     public String remover(@PathVariable int id) {
         noticiaDAO.remover(id);
-        return "redirect:/home";
+        return "redirect:/noticia";
     }
 }

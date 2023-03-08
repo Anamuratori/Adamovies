@@ -8,23 +8,20 @@
     <title>Adamovies</title>
 </head>
 <body>
-<td><a><h1 class="text-center">adamovies</h1></a></td>
+<td><a><h1 class="text-center" style="font-family: 'Bauhaus 93'; font-size: xxx-large;">adamovies</h1></a></td>
 <table class="table">
     <thead>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <a class="nav-link" th:href="@{/home}">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/filme}">Filmes</a>
+                    <a class="nav-link" th:href="@{/filme}">| Todos os Filmes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/noticia}">Noticias</a>
+                    <a class="nav-link" th:href="@{/noticia}">| Todas as Noticias</a>
                 </li>
             </ul>
         </div>
@@ -33,13 +30,13 @@
         <th> </th>
         <th> </th>
         <th>Autor</th>
-        <th>Descricao</th>
+        <th>Descrição</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="noticia : ${noticias}">
         <td><img style="max-height: 190px; max-width: 286px" th:src="${noticia.imagem}"></td>
-        <td th:text="${noticia.titulo}"></td>
+        <td th:text="${noticia.titulo}" style="font-weight: bold"></td>
         <td th:text="${noticia.autor}"></td>
         <td th:text="${noticia.descricao}"></td>
         <td><a th:href="@{/noticia/editar/{id}(id=${noticia.id})}"><i class="bi bi-pencil"></i></a></td> <!--Editar-->
