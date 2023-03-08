@@ -8,7 +8,7 @@
   <title>Adicionar Noticia</title>
 </head>
 <body>
-<h1>Adicionar Noticia</h1>
+<h3>Adicionar Noticia</h3>
 <form th:object="${noticia}" method="post" th:action="@{/noticia/novo}">
   <label for="titulo">Titulo:</label>
   <input type="text" id="titulo" name="titulo" th:field="*{titulo}"/>

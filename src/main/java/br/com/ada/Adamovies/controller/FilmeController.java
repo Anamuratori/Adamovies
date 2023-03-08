@@ -105,4 +105,10 @@ public class FilmeController {
         filmeDAO.atualizar(filme);
         return "redirect:/home";
     }
+    @GetMapping("/buscar/{id}")
+    public String listar(@PathVariable int id, Model model) {
+        Filme filme = filmeDAO.buscarPorId(id);
+        model.addAttribute("filme", filme);
+        return "filme_listar";
+    }
 }

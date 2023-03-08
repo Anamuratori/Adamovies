@@ -8,7 +8,7 @@
   <title>Adicionar Filme</title>
 </head>
 <body>
-<h1>Adicionar Filme</h1>
+<h3>Adicionar Filme</h3>
 <form th:object="${filme}" method="post" th:action="@{/filme/novo}">
   <label for="titulo">Titulo:</label>
   <input type="text" id="titulo" name="titulo" th:field="*{titulo}"/>
