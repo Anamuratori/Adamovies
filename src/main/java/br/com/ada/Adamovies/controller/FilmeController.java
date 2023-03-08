@@ -23,6 +23,12 @@ public class FilmeController {
         model.addAttribute("filmes", listaFilmes);
         return "filme_listar";
     }
+    @GetMapping("/listareduzida")
+    public String listarCinco(Model model) {
+        List<Filme> listaFilmes = filmeDAO.listarCinco();
+        model.addAttribute("filmes", listaFilmes);
+        return "redirect:/home";
+    }
     @GetMapping("/favoritos")
     public String listarFavoritos (Model model) {
         List<Filme> lista = filmeDAO.buscarFavoritos();
@@ -37,7 +43,7 @@ public class FilmeController {
     @PostMapping("/novo")
     public String adicionar (Filme filme) {
         filmeDAO.adicionar(filme);
-        return "redirect:/filme";
+        return "redirect:/home";
     }
     @GetMapping("/editar/{id}")
     public String editar(@PathVariable int id, Model model) {
@@ -49,13 +55,13 @@ public class FilmeController {
     @PostMapping("/editar")
     public String atualizar(Filme filme) {
         filmeDAO.atualizar(filme);
-        return "redirect:/filme";
+        return "redirect:/home";
     }
 
     @GetMapping("/remover/{id}")
     public String remover(@PathVariable int id) {
         filmeDAO.remover(id);
-        return "redirect:/filme";
+        return "redirect:/home";
     }
     @GetMapping("/like/{id}")
     public String like(@PathVariable int id) {
@@ -85,6 +91,17 @@ public class FilmeController {
 
     @PostMapping("/favoritar")
     public String favoritar(Filme filme) {
+        filmeDAO.atualizar(filme);
+        return "redirect:/home";
+    }
+    @GetMapping("/desfavoritar/{id}")
+    public String excluirFavorito(@PathVariable int id) {
+        filmeDAO.desfavoritar(id);
+        return "redirect:/home";
+    }
+
+    @PostMapping("/desfavoritar")
+    public String desfavoritar(Filme filme) {
         filmeDAO.atualizar(filme);
         return "redirect:/home";
     }

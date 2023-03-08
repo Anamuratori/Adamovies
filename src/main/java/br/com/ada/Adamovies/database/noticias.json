@@ -1,0 +1,18 @@
+[{"id": 1,
+  "titulo":"Tudo em Todo o Lugar vence o SAG Awards",
+  "autor":"Caio Coletti",
+  "descricao":"O SAG Awards 2023 aconteceu na noite de ontem (26), consagrande Tudo em Todo o Lugar ao Mesmo Tempo com quatro estatuetas, um recorde histórico para a premiação votada pelo sindicato dos atores de Hollywood.",
+  "imagem":"https://helios-i.mashable.com/imagery/articles/065MCk5vJJjNoaHYhKrOPYV/hero-image.fill.size_1248x702.v1677472894.jpg"
+  },
+  {"id": 2,
+    "titulo":"Critics Choice | Brendan Fraser ganha prêmio de melhor ator e faz discurso emocionante",
+    "autor":"Mariana Assumpção",
+    "descricao":"Na noite do último domingo (15), aconteceu a 28ª cerimônia do Critics Choice Awards, premiação que elege os destaques do cinema e da televisão do último ano. Um dos momentos mais emocionantes da noite foi a entrega do prêmio de Melhor Ator para Brendan Fraser, por seu papel no drama A Baleia (The Whale). Afastado de grandes projetos por muitos anos, e enfrentando alguns problemas pessoais nesse período, o retorno e desempenho de Fraser chamaram a atenção da crítica.",
+    "imagem":"https://www.clarin.com/img/2023/01/17/XcVaiahAX_720x0__1.jpg"
+  },
+  { "id": 3,
+    "titulo":"Criticado reboot de filme de terror ganha nova chance na Netflix",
+    "autor":"Alexandre Guglielmelli",
+    "descricao":"Já disponível no catálogo brasileiro da Netflix, O Grito tem tudo para fazer o maior sucesso na plataforma. Lançado em 2020, o longa foi detonado pela crítica especializada, e agora, ganha uma nova chance no streaming. O filme de terror é um reboot do longa homônimo, que por sua vez, é um remake de um assustador filme japonês.",
+    "imagem":"https://flixwatch.co/wp-content/uploads/80219131.jpg.webp"
+  }]
