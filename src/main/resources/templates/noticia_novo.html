@@ -22,6 +22,9 @@
       <li class="nav-item">
         <a class="nav-link" th:href="@{/noticia}">| Todas as Noticias</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" style="color: gray"  th:href="@{/filme/favoritos}">| Favoritos</a>
+      </li>
     </ul>
   </div>
 </nav>
@@ -45,7 +48,8 @@
   <input type="text" class="form-control" style="max-width: 400px" id="imagem" name="imagem" th:field="*{imagem}"/>
   </div>
   <button type="submit" class="btn btn-info">Salvar</button>
-  <button th:href="@{/home}" class="btn btn-danger">Cancelar</button>
+  <a class="btn btn-info" th:href="@{/home}">Cancelar</a>
+  <!--<button th:href="@{/home}" class="btn btn-danger">Cancelar</button>-->
 </form>
 </body>
 </html>

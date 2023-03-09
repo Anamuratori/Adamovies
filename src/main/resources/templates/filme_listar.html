@@ -24,6 +24,9 @@
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/noticia}">| Todas as Noticias</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" style="color: gray"  th:href="@{/filme/favoritos}">| Favoritos</a>
+            </li>
         </ul>
     </div>
 </nav>
@@ -37,9 +40,10 @@
         <img class="card__image" th:src="${filme.imagem}" alt="">
         <div class="card__content">
             <p th:text="${filme.titulo}" style="font-weight: bold"></p>
-            <p style="font-style: oblique" th:text="${filme.duracao}" >text</p>
-            <p style="font-style: oblique" th:text="${filme.imdb}"></p>
+            <p style="font-style: oblique" th:text="${filme.duracao} + ' min.'" ></p>
+            <p style="font-style: oblique" th:text="'imdb ' + ${filme.imdb}"></p>
             <p th:text="${filme.sinopse}"></p>
+            <a th:href="@{/filme/buscar/{id}(id=${filme.id})}" class="card__link">Ver filme</p></a>
 
         </div>
         <div class="card__info">
@@ -53,11 +57,13 @@
                 <a th:href="@{/filme/editar/{id}(id=${filme.id})}" class="card__link"><i style="font-size: 22px" class="material-icons">edit</i></a>
             </div>
             <div>
-                <a th:href="@{/filme/remover/{id}(id=${filme.id})}" class="card__link" onclick="return confirm('Tem certeza que deseja excluir esta noticia?')"><i style="font-size: 22px; color: darkred" class="material-icons">delete</i></i></a>
+                <a th:href="@{/filme/remover/{id}(id=${filme.id})}" class="card__link" onclick="return confirm('Tem certeza que deseja excluir este filme?')"><i style="font-size: 22px; color: darkred" class="material-icons">delete</i></i></a>
             </div>
             <div>
-            <a th:href="@{/filme/favoritar/{id}(id=${filme.id})}"><i style="font-size: 22px; color: goldenrod" class="material-icons">stars</i></a>
+            <a th:if="${filme.favorito == false}" th:href="@{/filme/favoritar/{id}(id=${filme.id})}"><i style="font-size: 22px; color: goldenrod" class="material-icons">star_border</i></a>
+                <a th:unless="${filme.favorito == false}" th:href="@{/filme/desfavoritar/{id}(id=${filme.id})}"><i style="font-size: 22px; color: goldenrod" class="material-icons">star_rate</i></a>
             </div>
+
         </div>
     </div>
 </div>
@@ -65,7 +71,7 @@
 <br>
 <nav class="navbar navbar-light bg-light">
     <a class="nav-link" style="color: gray" th:href="@{/filme/novo}">Adicionar Filme</a>
-    <a class="nav-link" style="color: gray"  th:href="@{/filme/favoritos}">Favoritos</a>
+    <a class="nav-link" style="color: gray" th:href="@{/home}">Voltar</a>
 </nav>
 <br>
 <br>

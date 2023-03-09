@@ -3,12 +3,10 @@ package br.com.ada.Adamovies.controller;
 import br.com.ada.Adamovies.dao.FilmeDAO;
 import br.com.ada.Adamovies.model.Filme;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -77,28 +75,19 @@ public class FilmeController {
         filmeDAO.dislike(id);
         return "redirect:/filme";
     }
+
     @GetMapping("/favoritar/{id}")
-    public String novoFavorito(@PathVariable int id) {
+    public String novoFavorito(@PathVariable int id, @RequestHeader(value = HttpHeaders.REFERER, required = false) final String referrer) {
         filmeDAO.favoritar(id);
-        return "redirect:/home";
+        return "redirect:" + referrer;
     }
 
-    @PostMapping("/favoritar")
-    public String favoritar(Filme filme) {
-        filmeDAO.atualizar(filme);
-        return "redirect:/home";
-    }
     @GetMapping("/desfavoritar/{id}")
-    public String excluirFavorito(@PathVariable int id) {
+    public String excluirFavorito(@PathVariable int id, @RequestHeader(value = HttpHeaders.REFERER, required = false) final String referrer) {
         filmeDAO.desfavoritar(id);
-        return "redirect:/home";
+        return "redirect:" + referrer;
     }
 
-    @PostMapping("/desfavoritar")
-    public String desfavoritar(Filme filme) {
-        filmeDAO.atualizar(filme);
-        return "redirect:/home";
-    }
     @GetMapping("/buscar/{id}")
     public String listar(@PathVariable int id, Model model) {
         Filme filme = filmeDAO.buscarPorId(id);

@@ -12,6 +12,7 @@ public class Filme {
     private String imagem;
     private int like = 0;
     private int dislike = 0;
+    private boolean favorito;
 
     public Filme() {
     }
@@ -85,5 +86,13 @@ public class Filme {
 
     public void setDislike(int dislike) {
         this.dislike = dislike;
+    }
+
+    public boolean isFavorito() {
+        return favorito;
+    }
+
+    public void setFavorito(boolean favorito) {
+        this.favorito = favorito;
     }
 }

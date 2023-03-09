@@ -52,11 +52,6 @@ public class FilmeDAO {
     public List<Filme> buscarTodos() {
         return filmes;
     }
-    public List<Filme> listarCinco() {
-        return filmes.stream()
-                .limit(2)
-                .collect(Collectors.toList());
-    }
 
     public void remover(int id) {
         filmes.removeIf(filme -> filme.getId() == id);
@@ -67,6 +62,7 @@ public class FilmeDAO {
             Filme f = filmes.get(i);
             if (f.getId() == id) {
                 filmesFavoritos.add(f);
+                f.setFavorito(true);
                 break;
             }
         }
@@ -77,6 +73,7 @@ public class FilmeDAO {
             Filme f = filmes.get(i);
             if (f.getId() == id) {
                 filmesFavoritos.remove(f);
+                f.setFavorito(false);
                 break;
             }
         }

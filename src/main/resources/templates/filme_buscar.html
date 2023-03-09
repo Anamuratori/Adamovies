@@ -23,6 +23,9 @@
       <li class="nav-item">
         <a class="nav-link" th:href="@{/noticia}">| Todas as Noticias</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" style="color: gray"  th:href="@{/filme/favoritos}">| Favoritos</a>
+      </li>
     </ul>
   </div>
 </nav>
@@ -42,7 +45,10 @@
   </thead>
   <tbody>
   <tr th:object="${filme}" method="get">
-    <td><a th:href="@{/filme/favoritar/{id}(id=${filme.id})}"><i style="font-size: 22px; color: goldenrod" class="material-icons">stars</i></a></td>
+    <td>
+      <a th:if="${filme.favorito == false}" th:href="@{/filme/favoritar/{id}(id=${filme.id})}"><i style="font-size: 22px; color: goldenrod" class="material-icons">star_border</i></a>
+      <a th:unless="${filme.favorito == false}" th:href="@{/filme/desfavoritar/{id}(id=${filme.id})}"><i style="font-size: 22px; color: goldenrod" class="material-icons">star_rate</i></a>
+    </td>
     <td><img style="max-height: 190px; max-width: 128px" th:src="${filme.imagem}"></td>
     <td th:text="${filme.titulo}" style="font-weight: bold"></td>
     <td th:text="${filme.genero}"></td>
@@ -59,40 +65,11 @@
   </tr>
   </tbody>
 </table>
-<!--<div class="cards">
-  <div th:object="${filme}" method="get" class="card">
-    <img class="card__image" th:src="${filme.imagem}" alt="">
-    <div class="card__content">
-      <p th:text="${filme.titulo}" style="font-weight: bold"></p>
-      <p style="font-style: oblique" th:text="${filme.duracao}"></p>
-      <p style="font-style: oblique" th:text="${filme.imdb}"></p>
-      <p th:text="${filme.sinopse}"></p>
-
-    </div>
-    <div class="card__info">
-      <div>
-        <a th:href="@{/filme/like/{id}(id=${filme.id})}" class="card__link"><i style="font-size: 16px" class="material-icons">thumb_up</i><p th:text="${filme.like}"></p></a>
-      </div>
-      <div>
-        <a th:href="@{/filme/dislike/{id}(id=${filme.id})}" class="card__link"><i style="font-size: 16px" class="material-icons">thumb_down</i><p th:text="${filme.dislike}"></p></a>
-      </div>
-      <div>
-        <a th:href="@{/filme/editar/{id}(id=${filme.id})}" class="card__link"><i style="font-size: 22px" class="material-icons">edit</i></a>
-      </div>
-      <div>
-        <a th:href="@{/filme/remover/{id}(id=${filme.id})}" class="card__link" onclick="return confirm('Tem certeza que deseja excluir esta noticia?')"><i style="font-size: 22px; color: darkred" class="material-icons">delete</i></i></a>
-      </div>
-      <div>
-        <a th:href="@{/filme/favoritar/{id}(id=${filme.id})}"><i style="font-size: 22px; color: goldenrod" class="material-icons">stars</i></a>
-      </div>
-    </div>
-  </div>
-</div>-->
 <br>
 <br>
 <nav class="navbar navbar-light bg-light">
   <a class="nav-link" style="color: gray" th:href="@{/filme/novo}">Adicionar Filme</a>
-  <a class="nav-link" style="color: gray"  th:href="@{/filme/favoritos}">Favoritos</a>
+  <a class="nav-link" style="color: gray" th:href="@{/home}">Voltar</a>
 </nav>
 <br>
 <br>
