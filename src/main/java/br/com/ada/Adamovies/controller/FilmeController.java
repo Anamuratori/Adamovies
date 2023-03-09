@@ -56,24 +56,14 @@ public class FilmeController {
         return "redirect:/filme";
     }
     @GetMapping("/like/{id}")
-    public String like(@PathVariable int id) {
+    public String like(@PathVariable int id, @RequestHeader(value = HttpHeaders.REFERER, required = false) final String referrer) {
         filmeDAO.like(id);
-        return "redirect:/filme";
-    }
-    @PostMapping("/like")
-    public String adicionarLike(@PathVariable int id) {
-        filmeDAO.like(id);
-        return "redirect:/filme";
+        return "redirect:" + referrer;
     }
     @GetMapping("/dislike/{id}")
-    public String dislike(@PathVariable int id) {
+    public String dislike(@PathVariable int id, @RequestHeader(value = HttpHeaders.REFERER, required = false) final String referrer) {
         filmeDAO.dislike(id);
-        return "redirect:/filme";
-    }
-    @PostMapping("/dislike")
-    public String adicionarDislike(@PathVariable int id) {
-        filmeDAO.dislike(id);
-        return "redirect:/filme";
+        return "redirect:" + referrer;
     }
 
     @GetMapping("/favoritar/{id}")
