@@ -1,5 +1,6 @@
 package br.com.ada.Adamovies.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Filme {
@@ -13,6 +14,7 @@ public class Filme {
     private int like = 0;
     private int dislike = 0;
     private boolean favorito;
+    List<Ator> atores = new ArrayList<>();
 
     public Filme() {
     }
@@ -94,5 +96,13 @@ public class Filme {
 
     public void setFavorito(boolean favorito) {
         this.favorito = favorito;
+    }
+
+    public List<Ator> getAtores() {
+        return atores;
+    }
+
+    public void setAtores(List<Ator> atores) {
+        this.atores = atores;
     }
 }

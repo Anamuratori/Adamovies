@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,6 +43,7 @@ public class FilmeDAO {
                 break;
             }
         }
+        salvarJson();
     }
     public Filme buscarPorId(int id) {
         return filmes.stream()
@@ -82,6 +84,11 @@ public class FilmeDAO {
     public List<Filme> buscarFavoritos() {
         return filmesFavoritos;
     }
+    public List<Filme> buscarMaisLikes() {
+        return filmes.stream()
+                .sorted(Comparator.comparingInt(Filme::getLike).reversed())
+                .limit(5).collect(Collectors.toList());
+    }
     public void like(int id) {
         for (int i = 0; i < filmes.size(); i++) {
             Filme f = filmes.get(i);
@@ -92,6 +99,7 @@ public class FilmeDAO {
         }
         salvarJson();
     }
+
     public void dislike (int id) {
         for (int i = 0; i < filmes.size(); i++) {
             Filme f = filmes.get(i);

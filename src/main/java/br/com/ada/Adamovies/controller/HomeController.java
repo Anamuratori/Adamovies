@@ -22,7 +22,7 @@ public class HomeController {
     @GetMapping
     public String listar(Model model) {
         List<Noticia> listaNoticias = noticiaDAO.buscarTodos();
-        List<Filme> listaFilmes = filmeDAO.buscarTodos();
+        List<Filme> listaFilmes = filmeDAO.buscarMaisLikes();
         model.addAttribute("filmes", listaFilmes);
         model.addAttribute("noticias", listaNoticias);
         return "pagina_inicial";

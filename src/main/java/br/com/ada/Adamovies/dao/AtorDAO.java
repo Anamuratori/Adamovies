@@ -37,20 +37,25 @@ public class AtorDAO {
                 break;
             }
         }
-    }
-    public Ator buscarPorId(int id) {
-        return atores.stream()
-                .filter(ator -> ator.getId() == id)
-                .findFirst()
-                .orElse(null);
-    }
-    public List<Ator> buscarTodos() {
-        return atores;
+        salvarJson();
     }
     public void adicionar(Ator ator) {
         ator.setId(proximoId++);
         atores.add(ator);
         salvarJson();
+    }
+    public Ator buscarPorId(int id){
+        return atores.stream()
+                .filter(ator -> ator.getId() == id)
+                .findFirst().orElse(null);
+    }
+    public List<Ator> buscarNaLista(List<Integer> idsAtores) {
+        return atores.stream()
+                .filter(ator -> idsAtores.contains(ator.getId()))
+                .collect(Collectors.toList());
+    }
+    public List<Ator> buscarTodos() {
+        return atores;
     }
     public void remover(int id) {
         atores.removeIf(ator -> ator.getId() == id);

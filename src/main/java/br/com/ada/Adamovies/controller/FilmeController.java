@@ -1,20 +1,26 @@
 package br.com.ada.Adamovies.controller;
 
+import br.com.ada.Adamovies.dao.AtorDAO;
 import br.com.ada.Adamovies.dao.FilmeDAO;
+import br.com.ada.Adamovies.model.Ator;
 import br.com.ada.Adamovies.model.Filme;
+import br.com.ada.Adamovies.model.FilmeComAtor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/filme")
 public class FilmeController {
     @Autowired
     private FilmeDAO filmeDAO;
+    @Autowired
+    private AtorDAO atorDAO ;
     @GetMapping
     public String listar(Model model) {
         List<Filme> listaFilmes = filmeDAO.buscarTodos();
@@ -27,25 +33,46 @@ public class FilmeController {
         model.addAttribute("filmes", lista);
         return "filme_listar";
     }
+
     @GetMapping("/novo")
     public String novo (Model model) {
-        model.addAttribute("filme", new Filme());
+        Filme filme = new Filme();
+        List<Integer> idsAtores = new ArrayList<>();
+        FilmeComAtor filmeCompleto = new FilmeComAtor();
+
+        filmeCompleto.setFilme(filme);
+        filmeCompleto.setIdsAtores(idsAtores);
+
+        model.addAttribute("filmeCompleto", filmeCompleto);
+        model.addAttribute("lista_atores", atorDAO.buscarTodos());
         return "filme_novo";
     }
     @PostMapping("/novo")
-    public String adicionar (Filme filme) {
+    public String adicionar (@ModelAttribute("filmeCompleto") FilmeComAtor filmeCompleto) {
+        Filme filme = filmeCompleto.getFilme();
+        List<Integer> idsAtores = filmeCompleto.getIdsAtores();
+        filme.setAtores(atorDAO.buscarNaLista(idsAtores));
+
         filmeDAO.adicionar(filme);
         return "redirect:/filme";
     }
     @GetMapping("/editar/{id}")
     public String editar(@PathVariable int id, Model model) {
         Filme filme = filmeDAO.buscarPorId(id);
-        model.addAttribute("filme", filme);
+        FilmeComAtor filmeCompleto = new FilmeComAtor();
+        filmeCompleto.setFilme(filme);
+        filmeCompleto.setIdsAtores(filme.getAtores().stream().map(Ator::getId).collect(Collectors.toList()));
+        model.addAttribute("filmeCompleto", filmeCompleto);
+        model.addAttribute("lista_atores", atorDAO.buscarTodos());
         return "filme_editar";
     }
 
     @PostMapping("/editar")
-    public String atualizar(Filme filme) {
+    public String atualizar(@ModelAttribute("filmeCompleto") FilmeComAtor filmeCompleto) {
+        Filme filme = filmeCompleto.getFilme();
+        List<Integer> idsAtores = filmeCompleto.getIdsAtores();
+        filme.setAtores(atorDAO.buscarNaLista(idsAtores));
+
         filmeDAO.atualizar(filme);
         return "redirect:/filme";
     }
@@ -79,7 +106,7 @@ public class FilmeController {
     }
 
     @GetMapping("/buscar/{id}")
-    public String listar(@PathVariable int id, Model model) {
+    public String buscarPorId(@PathVariable int id, Model model) {
         Filme filme = filmeDAO.buscarPorId(id);
         model.addAttribute("filme", filme);
         return "filme_buscar";

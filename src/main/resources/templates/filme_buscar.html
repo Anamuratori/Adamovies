@@ -24,6 +24,9 @@
         <a class="nav-link" th:href="@{/noticia}">| Todas as Noticias</a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" th:href="@{/ator}">| Atores</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" style="color: gray"  th:href="@{/filme/favoritos}">| Favoritos</a>
       </li>
     </ul>
@@ -39,6 +42,7 @@
     <th>Duração</th>
     <th>Sinopse</th>
     <th>IMDB</th>
+    <th>Atores</th>
     <th>Likes</th>
     <th>Dislikes</th>
   </tr>
@@ -55,6 +59,11 @@
     <td th:text="${filme.duracao}"></td>
     <td th:text="${filme.sinopse}"></td>
     <td th:text="${filme.imdb}"></td>
+    <td>
+    <ul>
+      <li th:each="ator: ${filme.atores}" th:text="${ator.nome}"></li>
+    </ul>
+    </td>
     <td th:text="${filme.like}"></td>
     <td th:text="${filme.dislike}"></td>
     <td><a th:href="@{/filme/like/{id}(id=${filme.id})}"><i style="font-size: 16px" class="material-icons">thumb_up</i></a></td>

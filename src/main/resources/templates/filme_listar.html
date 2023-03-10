@@ -25,6 +25,9 @@
                 <a class="nav-link" th:href="@{/noticia}">| Todas as Noticias</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" th:href="@{/ator}">| Atores</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" style="color: gray"  th:href="@{/filme/favoritos}">| Favoritos</a>
             </li>
         </ul>
@@ -43,6 +46,8 @@
             <p style="font-style: oblique" th:text="${filme.duracao} + ' min.'" ></p>
             <p style="font-style: oblique" th:text="'imdb ' + ${filme.imdb}"></p>
             <p th:text="${filme.sinopse}"></p>
+            <li style="font-style: oblique" th:each="ator: ${filme.atores}" th:text="${ator.nome}"></li>
+            <br>
             <a th:href="@{/filme/buscar/{id}(id=${filme.id})}" class="card__link">Ver filme</p></a>
 
         </div>

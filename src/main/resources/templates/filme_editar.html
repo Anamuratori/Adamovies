@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <meta charset="UTF-8">
@@ -22,37 +21,64 @@
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/noticia}">| Todas as Noticias</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/ator}">| Atores</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="color: gray"  th:href="@{/filme/favoritos}">| Favoritos</a>
+            </li>
         </ul>
     </div>
 </nav>
-<form th:object="${filme}" th:action="@{/filme/editar}" method="post">
-    <input type="hidden" th:field="*{id}">
-    <div class="mb-3">
-    <label for="titulo" class="form-label">Titulo:</label>
-    <input type="text" class="form-control" style="max-width: 400px" id="titulo" name="titulo" th:field="*{titulo}"/>
-    </div>
-    <div class="mb-3">
-    <label for="genero" class="form-label">Genero:</label>
-    <input type="text" class="form-control" style="max-width: 400px" id="genero" name="genero" th:field="*{genero}"/>
-    </div>
-    <div class="mb-3">
-    <label for="duracao" class="form-label">Duração:</label>
-    <input type="text" class="form-control" style="max-width: 400px" id="duracao" name="duracao" th:field="*{duracao}"/>
-    </div>
-    <div class="mb-3">
-    <label for="sinopse" class="form-label">Sinopse:</label>
-        <textarea type="text" class="form-control" style="max-width: 400px; height: 150px; word-break: break-word" id="sinopse" name="sinopse" th:field="*{sinopse}"/>
-    </div>
-    <div class="mb-3">
-    <label for="imdb" class="form-label">IMDB:</label>
-    <input type="text" class="form-control" style="max-width: 400px" id="imdb" name="imdb" th:field="*{imdb}"/>
-    </div>
-    <div class="mb-3">
-    <label for="imagem" class="form-label">Imagem:</label>
-    <input type="text" class="form-control" style="max-width: 400px" id="imagem" name="imagem" th:field="*{imagem}"/>
-    </div>
+
+<form th:object="${filmeCompleto}" th:action="@{/filme/editar}" method="post">
+    <input type="hidden" th:field="*{filme.id}">
+    <input type="hidden" th:field="*{filme.dislike}">
+    <input type="hidden" th:field="*{filme.like}">
+    <input type="hidden" th:field="*{filme.favorito}">
+        <div class="mb-3">
+        <label for="titulo" class="form-label">Titulo:</label>
+        <input type="text" class="form-control" style="max-width: 400px" id="titulo" name="titulo" th:field="*{filme.titulo}"/>
+        </div>
+
+        <div class="mb-3">
+        <label for="genero" class="form-label">Genero:</label>
+        <input type="text" class="form-control" style="max-width: 400px" id="genero" name="genero" th:field="*{filme.genero}"/>
+        </div>
+
+        <div class="mb-3">
+        <label for="duracao" class="form-label">Duração:</label>
+        <input type="text" class="form-control" style="max-width: 400px" id="duracao" name="duracao" th:field="*{filme.duracao}"/>
+        </div>
+
+        <div class="mb-3">
+        <label for="sinopse" class="form-label">Sinopse:</label>
+            <textarea type="text" class="form-control" style="max-width: 400px; height: 150px; word-break: break-word" id="sinopse" name="sinopse" th:field="*{filme.sinopse}"/>
+        </div>
+
+        <div class="mb-3">
+        <label for="imdb" class="form-label">IMDB:</label>
+        <input type="text" class="form-control" style="max-width: 400px" id="imdb" name="imdb" th:field="*{filme.imdb}"/>
+        </div>
+
+        <div class="mb-3">
+        <label for="imagem" class="form-label">Imagem:</label>
+        <input type="text" class="form-control" style="max-width: 400px" id="imagem" name="imagem" th:field="*{filme.imagem}"/>
+        </div>
+
+    <label for="atores">Escolha o(s) ator(es):</label>
+    </select>
+
+    <select th:field="*{idsAtores}" class="form-control" style="max-width: 400px" multiple="multiple" name="atores" id="atores">
+        <option th:each="ator : ${lista_atores}"
+            th:value="${ator.id}"
+            th:text="${ator.nome}">
+        </option>
+    </select>
     <button type="submit" class="btn btn-info">Salvar</button>
-    <button th:href="@{/home}" class="btn btn-danger">Cancelar</button>
+    <a class="btn btn-info" th:href="@{/home}">Cancelar</a>
 </form>
+<br>
+<br>
 </body>
 </html>

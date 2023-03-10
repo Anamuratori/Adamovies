@@ -36,16 +36,16 @@
 <table class="table">
   <thead>
   <tr>
-    <th th:text="${noticia.titulo}" style="font-weight: bold"></th>
-    <td th:text="${noticia.autor}" style="font-style: oblique"> </td>
+    <th th:text="${ator.titulo}" style="font-weight: bold"></th>
+<!--    <td th:text="Nacionalidade" style="font-style: oblique"> </td>-->
   </tr>
   </thead>
   <tbody>
-  <tr th:object="${noticia}" method="get">
-    <td><img style="max-height: 300px; max-width: 500px" th:src="${noticia.imagem}"></td>
-    <td th:text="${noticia.descricao}"></td>
-    <td><a th:href="@{/noticia/editar/{id}(id=${noticia.id})}"><i style="font-size: 16px" class="material-icons">edit</i></a></td>
-    <td><a th:href="@{/noticia/remover/{id}(id=${noticia.id})}" onclick="return confirm('Tem certeza que deseja excluir este filme?')"><i style="font-size: 22px; color: darkred" class="material-icons">delete</i></a></td>
+  <tr th:object="${ator}" method="get">
+    <td><img style="max-height: 300px; max-width: 500px" th:src="${ator.imagem}"></td>
+    <td th:text="${ator.nacionalidade}"></td>
+    <td><a th:href="@{/ator/editar/{id}(id=${ator.id})}"><i style="font-size: 16px" class="material-icons">edit</i></a></td>
+    <td><a th:href="@{/ator/remover/{id}(id=${ator.id})}" onclick="return confirm('Tem certeza que deseja excluir este ator?')"><i style="font-size: 22px; color: darkred" class="material-icons">delete</i></a></td>
   </tr>
   </tbody>
 </table>
@@ -53,7 +53,7 @@
 <br>
 <br>
 <nav class="navbar navbar-light bg-light">
-  <a class="nav-link" style="color: gray" th:href="@{/noticia/novo}">Adicionar Notícia</a>
+  <a class="nav-link" style="color: gray" th:href="@{/ator/novo}">Adicionar Ator</a>
   <a class="nav-link" style="color: gray" th:href="@{/home}">Voltar</a>
 </nav>
 <br>
