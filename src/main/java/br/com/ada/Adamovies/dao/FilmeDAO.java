@@ -24,7 +24,6 @@ public class FilmeDAO {
             filmes = objectMapper.readValue(
                     new File("src/main/java/br/com/ada/Adamovies/database/filmes.json"),
                     new TypeReference<>() {});
-            System.out.println(("Arquivo 'filmes.json'foi lido!"));
             if (filmes.size() >0) proximoId = filmes.get(filmes.size() -1).getId() + 1;
         } catch (IOException e) {
             System.out.println(e.getMessage());

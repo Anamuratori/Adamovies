@@ -13,7 +13,7 @@ public class Filme {
     private String imagem;
     private int like = 0;
     private int dislike = 0;
-    private boolean favorito;
+    private boolean favorito = false;
     List<Ator> atores = new ArrayList<>();
 
     public Filme() {

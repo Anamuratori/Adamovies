@@ -21,7 +21,6 @@ public class NoticiaDAO {
             noticias = objectMapper.readValue(
                     new File("src/main/java/br/com/ada/Adamovies/database/noticias.json"),
                     new TypeReference<>() {});
-            System.out.println(("Arquivo 'noticias.json'foi lido!"));
             if (noticias.size() >0) proximoId = noticias.get(noticias.size() -1).getId() + 1;
         } catch (IOException e) {
             System.out.println(e.getMessage());

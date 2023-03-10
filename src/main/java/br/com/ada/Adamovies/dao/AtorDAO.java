@@ -23,7 +23,6 @@ public class AtorDAO {
             atores = objectMapper.readValue(
                     new File("src/main/java/br/com/ada/Adamovies/database/atores.json"),
                     new TypeReference<>() {});
-            System.out.println(("Arquivo 'atores.json'foi lido!"));
             if (atores.size() >0) proximoId = atores.get(atores.size() -1).getId() + 1;
         } catch (IOException e) {
             System.out.println(e.getMessage());
