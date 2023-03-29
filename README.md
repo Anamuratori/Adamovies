@@ -10,6 +10,7 @@ Implementar as seguintes funcionalidades:
 Bônus:
 * Favoritar filmes
 * Listar filmes por mais likes
+* Relacionar atores ou lista de atores aos filmes
 
 Tópicos abordados no projeto:
 * SpringMVC, html, css
